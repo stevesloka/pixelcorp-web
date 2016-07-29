@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('webapp2')
-    .controller('MainController', MainController);
+  .module('webapp2')
+  .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, organizersService) {
+  function MainController($timeout, webDevTec, toastr, organizersService, speakersService) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -14,6 +14,7 @@
     vm.creationDate = 1469733404264;
     vm.showToastr = showToastr;
     getOrganizers();
+    getSpeakers();
 
     activate();
 
@@ -38,10 +39,17 @@
     }
 
     function getOrganizers() {
-        return organizersService.getOrganizers().then(function(data) {
-          vm.organizers = data;
-          return vm.organizers;
-        });
-      }
+      return organizersService.getOrganizers().then(function(data) {
+        vm.organizers = data;
+        return vm.organizers;
+      });
+    }
+
+    function getSpeakers() {
+      return speakersService.getSpeakers().then(function(data) {
+        vm.speakers = data;
+        return vm.speakers;
+      });
+    }
   }
 })();
