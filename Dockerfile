@@ -1,4 +1,4 @@
-FROM nginx:1.11.1-alpine
+FROM nginx:1.11.1
 
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 COPY ./dist /usr/share/nginx/html
