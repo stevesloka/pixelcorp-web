@@ -6,7 +6,7 @@
   .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, organizersService, speakersService) {
+  function MainController($timeout, webDevTec, toastr, organizersService, speakersService, sessionsService) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -15,6 +15,7 @@
     vm.showToastr = showToastr;
     getOrganizers();
     getSpeakers();
+    getSchedule();
 
     activate();
 
@@ -49,6 +50,13 @@
       return speakersService.getSpeakers().then(function(data) {
         vm.speakers = data;
         return vm.speakers;
+      });
+    }
+
+    function getSchedule() {
+      return sessionsService.getsessions().then(function(data) {
+        vm.schedule = data;
+        return vm.schedule;
       });
     }
   }
