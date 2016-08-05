@@ -11,6 +11,6 @@ COPY ./certs/server.pem /etc/nginx/ssl/
 COPY ./certs/server-key.pem /etc/nginx/ssl/
 
 ENTRYPOINT ./start.sh
-..
+
 EXPOSE 80
 EXPOSE 443
