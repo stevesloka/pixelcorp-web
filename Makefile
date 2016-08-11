@@ -4,7 +4,7 @@
 
 .PHONY: all container push
 
-TAG = latest
+TAG = 1.0.0
 PREFIX = stevesloka
 
 all: push

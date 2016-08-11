@@ -34,11 +34,9 @@
           currentDay.sessions.groupedStart = [];
           currentDay.name = data[i].name;
 
-          angular.forEach(data[i].stages, function(stage, key) {
+          angular.forEach(data[i].stages, function(stage) {
 
-            var lastSessionStart = {};
-
-            angular.forEach(stage.sessions, function(ses, key) {
+            angular.forEach(stage.sessions, function(ses) {
               var sessionEntry = ses;
               sessionEntry.stage = stage.name.split(/[ ]+/)[0];
               sessionEntry.time_start = getFormattedTime(sessionEntry.time_start.toString());
