@@ -5,7 +5,7 @@
 .PHONY: all container push
 
 TAG = 1.0.0
-PREFIX = stevesloka
+PREFIX = 192.168.2.50:5000/stevesloka
 
 all: push
 
