@@ -4,7 +4,7 @@
 
 .PHONY: all container push
 
-TAG = 1.0.0
+TAG = us9988addsched
 PREFIX = 192.168.2.50:5000/stevesloka
 
 all: push
