@@ -19,9 +19,6 @@
           <a href="#speakers">Speakers</a>
         </li>
         <li class="page-scroll">
-          <a href="#schedule">Schedule</a>
-        </li>
-        <li class="page-scroll">
           <a href="#organizers">Organizers</a>
         </li>
         <li class="page-scroll">
@@ -72,47 +69,6 @@
           </div>
 
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Schedule Grid Section -->
-<section id="schedule">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>Schedule</h2>
-        <hr class="star-primary">
-      </div>
-    </div>
-    <div class="row">
-
-      <div ng-repeat="day in main.schedule.days">
-        <h2>{{day.name}}</h2>
-
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Start:</th>
-              <th>End:</th>
-              <th>Abstract:</th>
-              <th>Speaker:</th>
-              <th>Stage:</th>
-            </tr>
-          </thead>
-          <tr ng-click="showDetails = ! showDetails" ng-repeat="s in (filteredData = (day.sessions | orderBy : 'time_start'))" ng-style="filteredData[$index].time_start - filteredData[$index+1].time_start !== 0 && {'height': '75px'}">
-
-            <td>{{s.time_start | date:'h:mma'}}</td>
-            <td>{{s.time_end | date:'h:mma'}}</td>
-            <td><strong>{{s.talk.title}}</strong><span ng-show="showDetails">: {{s.talk.description}}</span></td>
-            <td>{{s.speaker.name}}</td>
-            <td>{{s.stage}}</td>
-
-          </tr>
-        </table>
-
-      </div>
-
     </div>
   </div>
 </section>
