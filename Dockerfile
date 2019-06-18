@@ -1,16 +1,13 @@
-FROM nginx:1.11.1
+# Stage 1
+FROM node:8 as react-build
+WORKDIR /app
+COPY . ./
+RUN yarn
+RUN yarn build
 
-COPY ./default.conf /etc/nginx/conf.d/default.conf
-COPY ./dist /usr/share/nginx/html
-
-WORKDIR /usr/src
-ADD start.sh /usr/src/
-RUN chmod +x /usr/src/start.sh
-
-COPY ./certs/server.pem /etc/nginx/ssl/
-COPY ./certs/server-key.pem /etc/nginx/ssl/
-
-ENTRYPOINT ./start.sh
-
+# Stage 2 - the production environment
+FROM nginx:alpine
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build /app/build /usr/share/nginx/html
 EXPOSE 80
-EXPOSE 443
+CMD ["nginx", "-g", "daemon off;"]

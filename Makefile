@@ -1,16 +1,16 @@
-# Makefile for the Docker image stevesloka/abstractions-web
-# MAINTAINER: Steve Sloka <steve@stevesloka.com>
-# If you update this image please bump the tag value before pushing.
+PROJECT = pixelcorp-webui
+REGISTRY ?= stevesloka
+IMAGE := $(REGISTRY)/$(PROJECT)
 
-.PHONY: all container push
-
-TAG = 1.0.0
-PREFIX = 192.168.2.50:5000/stevesloka
-
-all: push
+GIT_REF = $(shell git rev-parse --short=8 --verify HEAD)
+VERSION ?= $(GIT_REF)
 
 container:
-	docker build -t $(PREFIX)/abstractions-web:$(TAG) .
+	docker build . -t $(IMAGE):$(VERSION)
 
 push: container
-	docker push $(PREFIX)/abstractions-web:$(TAG)
+	docker push $(IMAGE):$(VERSION)
+ifeq ($(TAG_LATEST), true)
+	docker tag $(IMAGE):$(VERSION) $(IMAGE):latest
+	docker push $(IMAGE):latest
+endif
