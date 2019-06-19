@@ -13,7 +13,7 @@ class FetchTeam extends React.Component {
     }
   
     componentDidMount() {
-      fetch("https://api.pixelcorp.dev/team")
+      fetch("https://pixelcorp.dev/team")
         .then(res => res.json())
         .then(
           (result) => {
